@@ -3,7 +3,7 @@ Program will track the "sold" tickets from StubHub (SH) via their API (https://d
 
 For each event, program will output a dataframe of sold tickets, a dataframe of the remaning tickets when the program stopped, and a dataframe of tickets that left the SH market but had re-entered the market or are suspected to have re-entered the market. The dataframe of sold tickets includes statistics of the event's market when the tickets were sold. The dataframe of the remaining tickets is the last call to the SH API when the program stops with the same statistics, currently set to 1day before the event date. The dataframe of tickets that have re-entered the SH market are identified by ticket seat number. If ticket seat numbers are not available, these tickets are identified by the quantity of tickets within a row meeting or exceeding the quanity of tickets at the time of sale within that same row, within 7 days. The re-entered dataframe maintains the statistics for when tickets were first sold. 
 
-As written a folder 'events' must exist in the working directory.
+As written, a folder 'events' must exist in the working directory.
 
 ## Routines
 ### Data_Mine
@@ -43,3 +43,42 @@ Pickle_Load loads event dataframes from /event/ directory.
 Sale_Detect will detect tickets that have left the SH market by comparison to the last SH API. Listings in the last call that do not appear on the market are assumed sold. Listings who have reduced the quanitity of tickets available are also assumed sold. All sold listings are added to the ledger.
 
 Sale_Valid will compare the existing ledger to the current event market. If the seats of a prior sale return to the market, that sale is removed from the ledger and added to the re-entered dataframe. Not all ticket listings identify their seats. Within 7 days from the time of sale, if the quantity of tickets available in a given row becomes >= the quantity of tickets available in that row, those sold tickets are assumed to have re-entered the market. The 7 day window was developed from a single event showing false sales within that timeframe.
+
+## Data Mined
+### All dataframes
+'currentPrice'	:	Price per ticket with fees
+'listingPrice'	:	Price per ticket                                                
+'quantity'	:	Quantity of available tickets listed                                
+'row'	:	Row of tickets                                                          
+'rowId'	:	Unique Section Number  - Row identifier                                 
+'row_num'	:	Numeric row of tickets                                              
+'rowId_sum'	:	Sum of available tickets in row                                     
+'seats'	:	T/F if seats are listed                                                 
+'seats_ls'	:	Listed seats                                                        
+'sectionName'	:	SH Section Name                                                 
+'section_num'	:	Section Number                                                  
+'zoneName'	:	SH Zone Name                                                        
+'sec_sum'	:	Sum of available tickets in section                                 
+'sec_mean'	:	Mean currentPrice of listings available in section                  
+'sec_med'	:	Median currentPrice of listings available in section                
+'sec_std'	:	Standard deviation of currentPrice of listings available in section 
+'sec_iqr'	:	IQR of currentPrice of listings available in section                
+'sec_25th'	:	Lower 25% of currentPrice of listings available in section          
+'sec_75th'	:	Upper 25% of currentPrice of listings available in section          
+'sec_wmean'	:	Mean currentPrice of tickets available in section                   
+'zone_sum'	:	Sum of available tickets in zone                                    
+'zone_mean'	:	Mean currentPrice of listings available in zone                     
+'zone_med'	:	Median currentPrice of listings available in zone                   
+'zone_std'	:	Standard deviation of currentPrice of listings available in zone    
+'zone_iqr'	:	IQR of currentPrice of listings available in zone                   
+'zone_25th'	:	Lower 25% of currentPrice of listings available in zone             
+'zone_75th'	:	Upper 25% of currentPrice of listings available in zone             
+'zone_wmean'	:	Mean currentPrice of tickets available in zone                  
+
+
+### Ledger and re-entered dataframes
+'ts_ls'	:	Time tickets had been on the market                                     
+'seats_sold'	:	Number of tickets sold                                          
+'ts_sale'	:	Time when tickets left the market                                   
+'gameover'	:	Time of the event                                                   
+'days_rem'	:	Days remaining until event at at time of sale
