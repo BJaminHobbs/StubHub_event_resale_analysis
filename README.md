@@ -3,7 +3,7 @@ Program will track the "sold" tickets from StubHub (SH) via their API (https://d
 
 For each event, program will output a dataframe of sold tickets, a dataframe of the remaning tickets when the program stopped, and a dataframe of tickets that left the SH market but had re-entered the market or are suspected to have re-entered the market. The dataframe of sold tickets includes statistics of the event's market when the tickets were sold. The dataframe of the remaining tickets is the last call to the SH API when the program stops with the same statistics, currently set to 1day before the event date. The dataframe of tickets that have re-entered the SH market are identified by ticket seat number. If ticket seat numbers are not available, these tickets are identified by the quantity of tickets within a row meeting or exceeding the quanity of tickets at the time of sale within that same row, within 7 days. The re-entered dataframe maintains the statistics for when tickets were first sold. 
 
-As written, a folder 'events' must exist in the working directory.
+As written, a folder 'events' must exist in the working directory. Files labeled GHpublic require either your SH information to access their API or the SH event markets you want to retrieve.
 
 ## Routines
 ### Data_Mine
