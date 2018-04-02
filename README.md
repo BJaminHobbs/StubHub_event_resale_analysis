@@ -24,28 +24,28 @@ API Login function must be supplied SH Key, SH Token, username and password. Ret
 
 Inv_Get function returns all event listings whose ticket quantity >=2 using the  login response and SH eventId.
 
-### Mined_Events
+#### Mined_Events
 Dict of events to be called from SH API.
 
-### SH_EventParse
+#### SH_EventParse
 SH_EventParse function extracts key data from event market listings. Creates other key identifiers from event market listings.
 
 LS_Stats converts event market listings to dataframe and calculates other key statistics.
 
 LS_Days calculates how long each ticket listing has been on the market.
 
-### Event_Pickle
+#### Event_Pickle
 Pickle_Save saves event dataframes to flat files in /event/ directory.
 
 Pickle_Load loads event dataframes from /event/ directory.
 
-### Sale
+#### Sale
 Sale_Detect will detect tickets that have left the SH market by comparison to the last SH API. Listings in the last call that do not appear on the market are assumed sold. Listings who have reduced the quanitity of tickets available are also assumed sold. All sold listings are added to the ledger.
 
 Sale_Valid will compare the existing ledger to the current event market. If the seats of a prior sale return to the market, that sale is removed from the ledger and added to the re-entered dataframe. Not all ticket listings identify their seats. Within 7 days from the time of sale, if the quantity of tickets available in a given row becomes >= the quantity of tickets available in that row, those sold tickets are assumed to have re-entered the market. The 7 day window was developed from a single event showing false sales within that timeframe.
 
 ## Data Mined
-### All dataframes
+#### All dataframes
 'currentPrice'	:	Price per ticket with fees
 'listingPrice'	:	Price per ticket                                                
 'quantity'	:	Quantity of available tickets listed                                
@@ -76,7 +76,7 @@ Sale_Valid will compare the existing ledger to the current event market. If the 
 'zone_wmean'	:	Mean currentPrice of tickets available in zone                  
 
 
-### Ledger and re-entered dataframes
+#### Ledger and re-entered dataframes
 'ts_ls'	:	Time tickets had been on the market                                     
 'seats_sold'	:	Number of tickets sold                                          
 'ts_sale'	:	Time when tickets left the market                                   
